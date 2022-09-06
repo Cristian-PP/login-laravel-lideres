@@ -27,6 +27,8 @@ class RoleSeeder extends Seeder
 
         Permission::create(['name' => 'edit'])->syncRoles([$role1]);
 
+        Permission::create(['name' => 'claves'])->syncRoles([$role1]);
+
         Permission::create(['name' => 'upload'])->syncRoles([$role1]);
        
     }

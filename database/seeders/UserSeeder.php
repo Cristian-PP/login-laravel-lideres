@@ -16,7 +16,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name'      => 'Gabriel Robles',
+            'name'      => 'Gabriel',
+            'lastname'  => 'Robles',
             'clave'     => 'G10',
             'email'     => 'grobles@capmega.com',
             // 'status'     => 'Activo',
@@ -25,7 +26,8 @@ class UserSeeder extends Seeder
 
 
         User::create([
-            'name'      => 'Cristian Pérez',
+            'name'      => 'Cristian',
+            'lastname'  => 'Pérez',
             'clave'     => 'Cpp10',
             'email'     => 'cperez@figand.com',
             // 'status'     => 'Activo',

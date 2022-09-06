@@ -194,8 +194,14 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+    
+
         Grobles16\LaravelDocker\LaravelDockerProvider::class,
+
+
 
 
     ],
@@ -214,7 +220,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
 
-        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
 
     ])->toArray(),

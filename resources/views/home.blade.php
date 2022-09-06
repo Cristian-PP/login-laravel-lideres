@@ -60,16 +60,7 @@
                     <div class="sidebar-profile">
                         <span><img class="img-circle avatar" src="{{ asset('css/assets/images/rotary-1.png') }}" width="60" height="60" alt="logo-rotary"></span>
                     </div>
-                    {{-- <div class="sidebar-profile">
-                        <a href="javascript:void(0);" id="profile-menu-link">
-                            <div class="sidebar-profile-image">
-                                <img src="assets/images/avatar1.png" class="img-circle img-responsive" alt="">
-                            </div>
-                            <div class="sidebar-profile-details">
-                                <span><img class="img-circle avatar" src="{{ asset('css/assets/images/rotary-1.png') }}" width="60" height="60" alt="logo-rotary"></span>
-                            </div>
-                        </a>
-                    </div> --}}
+                    
                 </div>
                 <ul class="menu accordion-menu">
                     <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
@@ -79,10 +70,18 @@
                         <a href="{{ route('affiliates.members') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a>
                         @endcan
                     </li>
+
+                    <li >
+                        <!--quien puede ver esta opción -->
+                        @can('claves')
+                        <a href="{{ route('claves') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Claves</p></a>
+                        @endcan
+                    </li>
+
                     <li >
                         <!-- quien puede ver esta opción -->
                         @can('upload')
-                        <a href="{{ route('affiliates.upload') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a>
+                        <a href="{{ route('file-import') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a>
                         @endcan
                     </li>
                 </ul>

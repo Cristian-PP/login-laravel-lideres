@@ -35,7 +35,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                                        <span class="user-name">{{ Auth::user()->name }}
+                                        {{-- <span class="user-name">{{ Auth::user()->name }} --}}
 
                                         </span>
                                     </a>
@@ -74,6 +74,7 @@
                     <ul class="menu accordion-menu">
                         <li ><a href="{{ route('dashboard') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
                         <li ><a href="{{ route('affiliates.members') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a></li>
+                        <li ><a href="{{ route('claves') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Número de Socio</p></a></li>
                         <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
                     </ul>
                 </div><!-- Page Sidebar Inner -->
@@ -97,15 +98,17 @@
                         <div class="col-md-12">
                             <div class="panel panel-white">
                                 <div class="panel-body">
-                                    <form action="{{ route('affiliates.upload')}}" method="POST" enctype="multipart/form-data" class="dropzone">
+                                    {{-- <form action="{{ route('affiliates.upload')}}" method="POST" enctype="multipart/form-data" class="dropzone"> --}}
+                                    <form action="import" method="POST" enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="fallback">
                                             {{-- @if (Session::has('message'))
                                             <p>{{ Session::get('message')}}</p>
                                             @endif --}}
-                                            <input name="fileCsv" type="file" required>
+                                            <input name="file" type="file" required>
                                             <br>
-                                            <button>Importar Usuarios</button>
+                                            <button type="submit">Importar Usuarios</button>
                                         </div>
                                     </form>
                                 </div>
@@ -124,10 +127,3 @@
 
 
 @endsection
-
-
-{{-- <form action="http://lambdathemes.in/file-upload" class="dropzone">
-    <div class="fallback">
-        <input name="file" type="file" multiple />
-    </div>
-</form> --}}

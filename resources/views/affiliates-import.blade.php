@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuario')
-
 @section('content')
 
     <body class="page-header-fixed">
@@ -37,7 +35,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
-                                        <span class="user-name">{{ Auth::user()->name }}
+                                        {{-- <span class="user-name">{{ Auth::user()->name }} --}}
 
                                         </span>
                                     </a>
@@ -75,9 +73,8 @@
                     </div>
                     <ul class="menu accordion-menu">
                         <li ><a href="{{ route('dashboard') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
-                        <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a></li>
-                        <li ><a href="{{ route('claves') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Número de Socio</p></a></li>
-                        <li ><a href="{{ route('affiliates.upload') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
+                        <li ><a href="{{ route('affiliates.members') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a></li>
+                        <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
                     </ul>
                 </div><!-- Page Sidebar Inner -->
             </div><!-- Page Sidebar -->
@@ -85,12 +82,12 @@
     
             <div class="page-inner">
                 <div class="page-title">
-                    <h3>Editar</h3>
+                    <h3>Subir Archivo</h3>
                     <div class="page-breadcrumb">
                         <ol class="breadcrumb">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="#">Dashboard</a></li>
-                            <li class="active">Editar</li>
+                            <li class="active">SUbir Archivo</li>
                         </ol>
                     </div>
                 </div>
@@ -101,36 +98,31 @@
                             <div class="panel panel-white">
                                 <div class="panel-body">
 
-                                    <a href="{{ route('affiliates.members') }}" class="btn btn-primary m-b-sm">Ver listado de Usuarios</a>
-                                    <h2>Editar Miembro</h2>
-
-                                    <form action="{{ route('affiliates.update', $user) }}" method ="POST">
+                                    {{-- <form action="{{ route('file-import') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        {{ method_field('PUT') }}
-                                        <h4 class="no-m m-b-sm">Nombre</h4>
-                                        <input type="text" name="name" class="js-states form-control" tabindex="-1" placeholder="Nombre" style="width: 100%" value="{{ $user->name }}"/>
-                                        {{-- <input type="text" name="name" placeholder="Nombre" value="{{ $user->name }}"> --}}
-                                        <h4 class="no-m m-b-sm">Apellidos</h4>
-                                        <input type="text" name="lastname" class="js-states form-control" tabindex="-1" placeholder="Apellidos" style="width: 100%" value="{{ $user->lastname }}"/>
-                                        {{-- <input type="text" name="lastname" placeholder="Apellidos" value="{{ $user->lastname }}"> --}}
-                                        <h4 class="no-m m-b-sm m-t-lg">Correo Electrónico</h4>                                        
-                                        <input type="text" name="email" class="js-states form-control" tabindex="-1" placeholder="Correo Electrónico" style="width: 100%" value="{{ $user->email }}" readonly/>
-                                        {{-- <input type="text" name="email" placeholder="Correo Electrónico" value="{{ $user->email }}"> --}}
-                                        <h4 class="no-m m-b-sm m-t-lg">Clave</h4>
-                                        <input type="text" name="clave" class="js-states form-control" tabindex="-1" placeholder="Clave" style="width: 100%" value="{{ $user->clave }}" readonly/>
-                                        {{-- <input type="text" name="clave" placeholder="Clave" value="{{ $user->clave }}"> --}}
-                                        {{-- <h4 class="no-m m-b-sm m-t-lg">Estatus</h4>
-                                        <select class="js-states form-control" name="status" tabindex="-1" placeholder="Estatus" style="width: 100%" value="{{ $user->status }}">
-                                                <option value="1">Activo</option>
-                                                <option value="0">Suspendido</option>
-                                        </select> --}}
-                                        {{-- <input type="text" name="status" class="js-states form-control" tabindex="-1" placeholder="Estatus" style="width: 100%" value="{{ $user->status }}"/>
-                                        <input type="text" name="status" placeholder="Estatus" value="{{ $user->status }}"> --}}
-                                        {{-- <a href="#"> --}}
-                                        <input type="submit" class="btn btn-primary m-b-sm" style="margin-top:50px;" value="Guardar">
-                                        {{-- </a> --}}
-                                    </form>
+                                        @method('PUT')
+                                          <div class="form-group mb-4" style="max-width: 500px; margin: 0 auto;">
+                                               <div class="custom-file text-left">
+                                                   <input type="file" name="file" class="custom-file-input" id="file">
+                                                   <label class="custom-file-label" for="file">Elija el archivo                                                </label>
+                                               </div>
+                                         </div>
+                                                <button type="submit" class="btn btn-primary">Importar Datos</button>
+                                               <a class="btn btn-success" href="#">Exportar datos</a>
+                                    </form> --}}
 
+
+                                    <form method='POST' action="{{ route('file-import') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                           <label for="file" class="form-label">Archivo</label>
+                                           <input type="file" class="form-control" id="file" name="file" value="">
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-success">Importar</button>
+                                        </form>
+                                    
 
                                 </div>
                             </div>
@@ -149,3 +141,58 @@
 
 @endsection
 
+
+
+
+<!-- Success message -->
+{{-- @if(Session::has('success'))
+<div class="alert alert-success">
+   {{ Session::get('success') }}
+</div>
+@endif
+
+<form method='post' action="{{ route('employees.importdata') }}" enctype="multipart/form-data">
+@csrf
+<div class="mb-3">
+   <label for="file" class="form-label">File</label>
+   <input type="file" class="form-control" id="file" name="file" value="">
+</div>
+
+<button type="submit" class="btn btn-success">Import</button>
+</form> --}}
+
+
+
+    <!-- Success message -->
+
+    {{-- @if(Session::has('success'))
+       <div class="alert alert-success">
+          {{ Session::get('success') }}
+       </div>
+    @endif --}}
+
+
+     <!-- Import data with validation -->
+     {{-- <h2 class='mt-5'>Validate and import data</h2> --}}
+     {{-- Display errors --}}
+     {{-- @if (count($errors) > 0)
+         <div class="row">
+             <div class="col-md-12 ">
+                 <div class="alert alert-danger">
+                     <ul>
+                         @foreach($errors->all() as $error)
+                             <li>{{ $error }} </li>
+                          @endforeach 
+                     </ul> 
+                  </div>
+             </div>
+          </div>
+     @endif --}}
+
+     {{-- <form method='post' action="{{ route('affiliates.validateandimportdata') }}" >
+      @csrf
+          <button type="submit" class="btn btn-success">Import</button>
+      </form>
+    --}}
+
+    

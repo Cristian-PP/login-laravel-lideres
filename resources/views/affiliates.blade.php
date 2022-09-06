@@ -83,7 +83,8 @@
                     <ul class="menu accordion-menu">
                         <li ><a href="{{ route('dashboard') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
                         <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a></li>
-                        <li ><a href="{{ route('affiliates.upload') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
+                        <li ><a href="{{ route('claves') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Número de Socio</p></a></li>
+                        <li ><a href="{{ route('file-import') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
                         
                     </ul>
                 </div><!-- Page Sidebar Inner -->
@@ -116,6 +117,7 @@
                                                 {{-- <th>Acción</th> --}}
                                                 <th>Id</th>
                                                 <th>Nombre</th>
+                                                <th>Apellidos</th>
                                                 <th>Clave</th>
                                                 <th>Correo</th>
                                                 {{-- <th>Estatus</th> --}}
@@ -127,6 +129,7 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nombre</th>
+                                                <th>Apellidos</th>
                                                 <th>Clave</th>
                                                 <th>Correo</th>
                                                 {{-- <th>Estatus</th> --}}
@@ -139,6 +142,7 @@
                                             <tr>
                                                 <td>{{$item->id}}</td>
                                                 <td>{{$item->name}}</td>
+                                                <td>{{$item->lastname}}</td>
                                                 <td>{{$item->clave}}</td>
                                                 <td>{{$item->email}}</td>
                                                 {{-- <td>-</td> --}}

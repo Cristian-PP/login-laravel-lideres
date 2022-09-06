@@ -1,12 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Editar Usuario')
-
 @section('content')
 
     <body class="page-header-fixed">
-        
-
         <form class="search-form" action="#" method="GET">
             <div class="input-group">
                 <input type="text" name="search" class="form-control search-input" placeholder="Search...">
@@ -32,23 +28,21 @@
                     <div class="topmenu-outer">
                         <div class="top-menu">
                             <ul class="nav navbar-nav navbar-left">
-                                
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
                                         <span class="user-name">{{ Auth::user()->name }}
-
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-list" role="menu">
                                         <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Perfil</a></li>
                                         <li role="presentation">
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="fa fa-sign-out m-r-xs"></i>Cerrar Sesión
                                             </a>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
+                                            @csrf
                                             </form>
                                         </li>
                                     </ul>
@@ -58,7 +52,7 @@
                                         <span><i class="fa fa-sign-out m-r-xs"></i>Cerrar Sesión</span>
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                     @csrf
+                                    @csrf
                                     </form>
                                 </li>
                             </ul><!-- Nav -->
@@ -74,78 +68,70 @@
                         </div>
                     </div>
                     <ul class="menu accordion-menu">
-                        <li ><a href="{{ route('dashboard') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
-                        <li class="active"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a></li>
-                        <li ><a href="{{ route('claves') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Número de Socio</p></a></li>
-                        <li ><a href="{{ route('affiliates.upload') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a></li>
+                        <li >
+                            <a href="{{ route('dashboard') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a>
+                        </li>
+                        <li >
+                            <a href="{{ route('affiliates.members') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Afiliados</p></a>
+                        </li>
+                        <li class="active">
+                            <a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Número de Socio</p></a>
+                        </li>
+                        <li >
+                            <a href="{{ route('file-import') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list"></span><p>Archivo</p></a>
+                        </li>
+                    
                     </ul>
                 </div><!-- Page Sidebar Inner -->
             </div><!-- Page Sidebar -->
-    
-    
+
+
             <div class="page-inner">
                 <div class="page-title">
-                    <h3>Editar</h3>
+                    <h3>Agregar Número de Socio</h3>
                     <div class="page-breadcrumb">
                         <ol class="breadcrumb">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="#">Dashboard</a></li>
-                            <li class="active">Editar</li>
+                            <li class="active">Agregar Número de Socio</li>
                         </ol>
                     </div>
                 </div>
-
                 <div id="main-wrapper">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel panel-white">
+                                <div class="panel-heading clearfix">
+                                    <h4 class="panel-title">Número de Socio</h4>
+                                </div>
                                 <div class="panel-body">
+                                    <p class="text-center m-t-md">Crear Número de Socio de Lideres de Puebla</p>
+                                    <form class="m-t-md" method="POST" action="{{ route('claves') }}">
+                                    @csrf
+            
+                                        <div class="form-group">
+                                            <input id="clave" type="text" class="form-control @error('clave') is-invalid @enderror" placeholder="Número de Socio"  name="clave" value="{{ old('clave') }}" required>
 
-                                    <a href="{{ route('affiliates.members') }}" class="btn btn-primary m-b-sm">Ver listado de Usuarios</a>
-                                    <h2>Editar Miembro</h2>
+                                            @error('clave')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    
+                                        <button type="submit" class="btn btn-success btn-block m-t-xs">Registrar Número de socio</button>
+                                        <a href="claves" class="btn btn-default btn-block m-t-xs">Número de Socio</a>
+                                        </form>
 
-                                    <form action="{{ route('affiliates.update', $user) }}" method ="POST">
-                                        @csrf
-                                        {{ method_field('PUT') }}
-                                        <h4 class="no-m m-b-sm">Nombre</h4>
-                                        <input type="text" name="name" class="js-states form-control" tabindex="-1" placeholder="Nombre" style="width: 100%" value="{{ $user->name }}"/>
-                                        {{-- <input type="text" name="name" placeholder="Nombre" value="{{ $user->name }}"> --}}
-                                        <h4 class="no-m m-b-sm">Apellidos</h4>
-                                        <input type="text" name="lastname" class="js-states form-control" tabindex="-1" placeholder="Apellidos" style="width: 100%" value="{{ $user->lastname }}"/>
-                                        {{-- <input type="text" name="lastname" placeholder="Apellidos" value="{{ $user->lastname }}"> --}}
-                                        <h4 class="no-m m-b-sm m-t-lg">Correo Electrónico</h4>                                        
-                                        <input type="text" name="email" class="js-states form-control" tabindex="-1" placeholder="Correo Electrónico" style="width: 100%" value="{{ $user->email }}" readonly/>
-                                        {{-- <input type="text" name="email" placeholder="Correo Electrónico" value="{{ $user->email }}"> --}}
-                                        <h4 class="no-m m-b-sm m-t-lg">Clave</h4>
-                                        <input type="text" name="clave" class="js-states form-control" tabindex="-1" placeholder="Clave" style="width: 100%" value="{{ $user->clave }}" readonly/>
-                                        {{-- <input type="text" name="clave" placeholder="Clave" value="{{ $user->clave }}"> --}}
-                                        {{-- <h4 class="no-m m-b-sm m-t-lg">Estatus</h4>
-                                        <select class="js-states form-control" name="status" tabindex="-1" placeholder="Estatus" style="width: 100%" value="{{ $user->status }}">
-                                                <option value="1">Activo</option>
-                                                <option value="0">Suspendido</option>
-                                        </select> --}}
-                                        {{-- <input type="text" name="status" class="js-states form-control" tabindex="-1" placeholder="Estatus" style="width: 100%" value="{{ $user->status }}"/>
-                                        <input type="text" name="status" placeholder="Estatus" value="{{ $user->status }}"> --}}
-                                        {{-- <a href="#"> --}}
-                                        <input type="submit" class="btn btn-primary m-b-sm" style="margin-top:50px;" value="Guardar">
-                                        {{-- </a> --}}
-                                    </form>
-
-
+                                    <p class="text-center m-t-xs text-sm">2022 &copy; Lideres de Puebla</p>
                                 </div>
                             </div>
-                        </div>
-                    </div><!-- Row -->
-                </div><!-- Main Wrapper -->
-
-                <div class="page-footer">
-                    <p class="no-s">2022 &copy; Lideres de Puebla.</p>
-                </div>
+                        </div><!-- Row -->
+                    </div><!-- Main Wrapper -->
+                </div><!-- Page Inner -->
             </div><!-- Page Inner -->
         </main><!-- Page Content -->
-        <div class="cd-overlay"></div>
+
     </body>
 
-
 @endsection
-
